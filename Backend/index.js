@@ -25,6 +25,13 @@ app.get("/getusers", (req, res) => {
     })
 })
 
+app.post("/createUsers", async (req, res) =>{
+    const user = req.body;
+    const newUser = new UserModel(user);
+    await newUser.save();
+    res.json(user);
+})
+
 mongoose.connect('mongodb+srv://subramanyamchowdam7654:subbu1919@cluster2.0ybx9.mongodb.net/project?retryWrites=true&w=majority&appName=Cluster2')
     .then(() => {
         console.log('MongoDB connected');
